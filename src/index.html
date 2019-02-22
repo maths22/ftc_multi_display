@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="dashboard.css">-->
+    <title>FTC Multi Display Config</title>
+</head>
+<body class="container">
+<h1>FTC Multi Display Config</h1>
+<h3>Running on port: <span id="port"></span></h3>
+<div class="card">
+    <div class="card-body">
+        <form onsubmit="return onFormSubmit(this);">
+            <div class="form-group">
+                <label for="div1Host">Division 1</label>
+                <input class="form-control" id="div1Host">
+            </div>
+            <div class="form-group">
+                <label for="div2Host">Division 2</label>
+                <input class="form-control" id="div2Host">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+
+        <form onsubmit="return onSwitcherFormSubmit(this);">
+            <div class="form-group">
+                <label for="switcher">Switcher</label>
+                <input class="form-control" id="switcher">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <button onclick="setFullscreen(true)" class="btn btn-secondary">Fullscreen</button>
+        <button onclick="setFullscreen(false)" class="btn btn-secondary">Un-fullscreen</button>
+
+        <div class="form-group">
+            <select id="resolution">
+                <option value="800,600">800x600</option>
+                <option value="1280,720">1280x720</option>
+                <option value="1920,1080">1920x1080</option>
+            </select>
+        </div>
+        <button onclick="setResolution(document.getElementById('resolution').value)" class="btn btn-secondary">Set size</button>
+    </div>
+</div>
+<script src="./renderer.js"></script>
+</html>
