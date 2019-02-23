@@ -2,6 +2,8 @@
 // noinspection NpmUsedModulesInstalled
 import { ipcRenderer } from 'electron';
 
+let autorotateEnabled = false;
+
 function onFormSubmit(e) {
   const d1Host = document.getElementById("div1Host").value;
   const d2Host = document.getElementById("div2Host").value;
@@ -31,6 +33,14 @@ function setFullscreen(val) {
 function setResolution(val) {
   ipcRenderer.send('setResolution', val);
 }
+
+function setAutorotate(val) {
+  autorotateEnabled = val;
+  const time = document.getElementById("autorotate-time").value;
+  ipcRenderer.send('setAutorotate', { val: val, time: time } );
+  document.getElementById('autorotate-button').innerText = autorotateEnabled ? 'Disable autorotate' : 'Enable autorotate'
+}
+
 
 ipcRenderer.on('setPort', (evt, msg) => {
   document.getElementById("port").innerHTML = msg;

@@ -41,7 +41,19 @@
     <div class="card-body">
         <button onclick="setFullscreen(true)" class="btn btn-secondary">Fullscreen</button>
         <button onclick="setFullscreen(false)" class="btn btn-secondary">Un-fullscreen</button>
-
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="form-group">
+            <label for="switcher">Seconds</label>
+            <input class="form-control" id="autorotate-time" type="number">
+        </div>
+        <button onclick="setAutorotate(!autorotateEnabled)" class="btn btn-secondary" id="autorotate-button">Enable autorotate</button>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
         <div class="form-group">
             <select id="resolution">
                 <option value="800,600">800x600</option>

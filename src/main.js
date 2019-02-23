@@ -18,6 +18,9 @@ const isOsx = process.platform === "darwin";
 let port = '_';
 let client;
 
+let autorotateId = 0;
+let currentPos = 0;
+
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({ width: 800, height: 600 });
@@ -84,6 +87,24 @@ ipcMain.on('toggleFullscreen', (event, val) => {
     Object.values(dispWindows).forEach((w) => w.setFullScreen(val));
   }
 });
+
+function autoRotater() {
+  const vals = Object.values(dispWindows);
+  currentPos = (currentPos + 1) % vals.length;
+  vals[currentPos].show();
+}
+
+ipcMain.on('setAutorotate', (event, val) => {
+  if(val.val) {
+    autorotateId = setInterval(autoRotater, val.time * 1000);
+  } else {
+    if(autorotateId !== 0) {
+      clearInterval(autorotateId);
+      autorotateId = 0;
+    }
+  }
+});
+
 
 
 ipcMain.on('setResolution', (event, val) => {
